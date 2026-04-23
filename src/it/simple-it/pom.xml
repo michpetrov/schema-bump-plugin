@@ -16,16 +16,32 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>@project.groupId@</groupId>
-        <artifactId>@project.artifactId@</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <phase>compile</phase>
+            <configuration>
+              <skipMain>true</skipMain>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.wildfly.maven.plugins</groupId>
+        <artifactId>schema-bump-plugin</artifactId>
         <version>@project.version@</version>
         <executions>
           <execution>
-            <id>touch</id>
-            <phase>validate</phase>
+            <id>bump-version</id>
+            <phase>generate-sources</phase>
             <goals>
-              <goal>touch</goal>
+              <goal>bump-version</goal>
             </goals>
+            <configuration>
+              <interactive>false</interactive>
+            </configuration>
           </execution>
         </executions>
       </plugin>
